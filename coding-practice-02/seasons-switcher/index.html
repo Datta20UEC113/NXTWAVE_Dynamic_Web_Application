@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seasons Switcher</title><style>
+body { margin: 0; font: 1rem system-ui, sans-serif; }
+main { text-align: center; }
+img { width: 100%; }
+#seasonMediumImage { display: none; }
+@media (min-width: 768px) { #seasonSmallImage { display: none; } #seasonMediumImage { display: block; } }
+nav { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin: 1rem; }
+button { padding: .7rem 1rem; border: 0; border-radius: .5rem; color: white; cursor: pointer; }
+#springBtn { background: #287245; } #summerBtn { background: #ae4c09; }
+#autumnBtn { background: #943229; } #winterBtn { background: #305a8d; }
+</style>
+</head><body>
+<main>
+  <img id="seasonSmallImage" alt="Four seasons" src="https://d2clawv67efefq.cloudfront.net/ccbp-dynamic-webapps/seasons-switcher-four-seasons-xs-img.png">
+  <img id="seasonMediumImage" alt="Four seasons" src="https://d2clawv67efefq.cloudfront.net/ccbp-dynamic-webapps/seasons-switcher-four-seasons-md-img.png">
+  <nav aria-label="Select season">
+    <button id="springBtn">Spring</button>
+    <button id="summerBtn">Summer</button>
+    <button id="autumnBtn">Autumn</button>
+    <button id="winterBtn">Winter</button>
+  </nav>
+</main>
+<script>
+const imagePrefix = "https://d2clawv67efefq.cloudfront.net/ccbp-dynamic-webapps/seasons-switcher-";
+for (const season of ["spring", "summer", "autumn", "winter"]) {
+  document.getElementById(season + "Btn").addEventListener("click", () => {
+    for (const [id, size] of [["seasonSmallImage", "xs"], ["seasonMediumImage", "md"]]) {
+      const image = document.getElementById(id);
+      image.src = imagePrefix + season + "-" + size + "-img.png";
+      image.alt = season;
+    }
+  });
+}
+</script>
+</body></html>
