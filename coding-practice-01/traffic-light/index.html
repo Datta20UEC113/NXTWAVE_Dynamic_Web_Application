@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Traffic Light</title><style>
+body { margin: 0; background: #86d2f2; color: #1f1d41; font-family: Roboto, sans-serif; }
+main { text-align: center; padding: 3rem 1rem; }
+section { display: flex; justify-content: center; gap: 2rem; }
+.controls, .signal { display: grid; align-items: center; gap: 1rem; padding: 1rem; }
+button { border: 0; border-radius: .6rem; padding: .8rem 1.2rem; background: #1f1d41; color: white; cursor: pointer; }
+.signal { background: #1f1d41; border-radius: 2rem; }
+.signal div { width: 3rem; height: 3rem; background: #4b5069; border-radius: 50%; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Traffic Light</h1>
+  <section aria-label="Traffic light controls">
+    <div class="controls">
+      <button id="stopButton">Stop</button>
+      <button id="readyButton">Ready</button>
+      <button id="goButton">Go</button>
+    </div>
+    <div class="signal">
+      <div id="stopLight"></div>
+      <div id="readyLight"></div>
+      <div id="goLight"></div>
+    </div>
+  </section>
+</main>
+<script>
+const colors = { stop: "#cf1124", ready: "#f7c948", go: "#199473" };
+function changeSignal(active) {
+  for (const [name, color] of Object.entries(colors)) {
+    document.getElementById(name + "Button").style.backgroundColor = name === active ? color : "#1f1d41";
+    document.getElementById(name + "Light").style.backgroundColor = name === active ? color : "#4b5069";
+  }
+}
+for (const name of Object.keys(colors)) {
+  document.getElementById(name + "Button").addEventListener("click", () => changeSignal(name));
+}
+</script>
+</body>
+</html>
